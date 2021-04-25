@@ -47,13 +47,9 @@ public class AnimalService {
     }
 
     public void updateAnimal(Animal e, String nombre ){
-        Animal u = repositori.findById(nombre).orElse(null);
-                u.setColorAnimal(e.getColorAnimal());
-                u.setNomAnimal(e.getNomAnimal());
-                repositori.delete(repositori.findById(nombre).orElse(null));
-                repositori.save(u);
-
-
+        Animal animal = consultaPerNom(nombre);
+                repositori.delete(animal);
+                repositori.save(e);
 
     }
 
