@@ -2,6 +2,8 @@ package cat.itb.projectespring.model.servei;
 
 import cat.itb.projectespring.model.Animal;
 import cat.itb.projectespring.model.Usuari;
+import cat.itb.projectespring.model.repositoris.RepositoriAnimals;
+import cat.itb.projectespring.model.repositoris.RepositoriUsuaris;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,18 +16,19 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private List<Animal> repositori = new ArrayList<>();
+    @Autowired
+    private RepositoriAnimals repositori;
 
     public void afegir(Animal e) {
-        repositori.add(e);
+        repositori.save(e);
     }
     public List<Animal> llistat() {
-        return repositori;
+        return (List<Animal>) repositori.findAll();
     }
 
     @PostConstruct
     public void init() {
-        repositori.addAll(
+        repositori.saveAll(
                 Arrays.asList(
                         new Animal("Gos", "Blanc"),
                         new Animal("Gat", "Negre"),
@@ -34,43 +37,19 @@ public class AnimalService {
 
 
     public Animal consultaPerNom(String s) {
-        Animal u = null;
-        boolean encontrado = false;
-        for (int i = 0; i < repositori.size() && !encontrado; i++) {
-            if (s.equals(repositori.get(i).getNomAnimal())){
 
-                u = repositori.get(i);
-                encontrado=true;
-            }
-        }
-        return  u;
+        return  repositori.findById(s).orElse(null);
     }
 
     public void removeAnimalbyName(String s){
-        Animal u = null;
-        boolean encontrado = false;
-        for (int i = 0; i < repositori.size() && !encontrado; i++) {
-            if (s.equals(repositori.get(i).getNomAnimal())){
-
-                u = repositori.get(i);
-                encontrado=true;
-            }
-        }
-        repositori.remove(u);
+        Animal animal = consultaPerNom(s);
+        repositori.delete(animal);
     }
 
     public void updateAnimal(Animal e, String nombre ){
-        Animal u = null;
-        boolean encontrado = false;
-        for (int i = 0; i < repositori.size() && !encontrado; i++) {
-            if (nombre.equals(repositori.get(i).getNomAnimal())){
+          repositori.save(e);
 
 
-                repositori.get(i).setNomAnimal(e.getNomAnimal());
-                repositori.get(i).setColorAnimal(e.getColorAnimal());
-
-            }
-        }
 
     }
 
