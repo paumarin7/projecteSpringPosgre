@@ -34,8 +34,6 @@ public class Controlador {
     @RequestMapping( value ="/delete/{name}", method = RequestMethod.POST)
     public String removeAnimal(@PathVariable("name") String animal){
 
-
-
         serveiAnimal.removeAnimalbyName(animal);
         return "redirect:/";
     }
