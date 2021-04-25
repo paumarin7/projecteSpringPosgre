@@ -48,9 +48,8 @@ public class AnimalService {
 
     public void updateAnimal(Animal e, String nombre ){
         Animal u = consultaPerNom(nombre);
-        u.setNomAnimal(e.getNomAnimal());
-        u.setNomAnimal(e.getColorAnimal());
-        repositori.save(u);
+        repositori.delete(u);
+        repositori.save(e);
     }
 
 
