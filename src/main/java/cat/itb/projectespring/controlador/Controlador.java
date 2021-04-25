@@ -29,27 +29,11 @@ public class Controlador {
         m.addAttribute("Animal",new Animal());
         return "home";
     }
-
-
-
-
-
-
-
-
     @GetMapping("/userList")
     public String llistar(Model m){
         m.addAttribute("llistaUsuaris",servei.llistat());
         return "llistatUsuaris";
     }
-
-
-
-
-
-
-
-
 
     @GetMapping("/home")
     public String llistarAnimal(Model m){
@@ -57,20 +41,16 @@ public class Controlador {
         m.addAttribute("Animal",new Animal());
         return "home";
     }
-
-
     @GetMapping("/registration")
     public String showRegistrationForm(WebRequest request, Model model) {
         model.addAttribute("usuari", new Usuari());
         return "register";
     }
-
     @RequestMapping("/afegir")
     public String afegirAnimal(Model model) {
         model.addAttribute("Animal", new Animal());
         return "afegirAnimal";
     }
-
     @PostMapping("/afegirAnimal")
     //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
     //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
@@ -79,10 +59,6 @@ public class Controlador {
         return "redirect:/";
 
     }
-
-
-
-
     @PostMapping("/registration")
     //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
     //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
@@ -92,11 +68,10 @@ public class Controlador {
         return "redirect:/list";
 
     }
-
     @RequestMapping( value ="/update/{name}", method = RequestMethod.POST)
     public String updateAnimal(@PathVariable("name") String animal, Model m){
         m.addAttribute("Animal",serveiAnimal.consultaPerNom(animal));
-        return "/updateAnimal";
+        return "updateAnimal";
     }
 
     @PostMapping("/updateAnimal")
