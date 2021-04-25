@@ -31,13 +31,6 @@ public class Controlador {
     }
 
 
-    @RequestMapping( value ="/delete/{name}", method = RequestMethod.POST)
-    public String removeAnimal(@PathVariable("name") String animal){
-
-        serveiAnimal.removeAnimalbyName(animal);
-        return "redirect:/";
-    }
-
 
 
 
@@ -102,10 +95,7 @@ public class Controlador {
 
     @RequestMapping( value ="/update/{name}", method = RequestMethod.POST)
     public String updateAnimal(@PathVariable("name") String animal, Model m){
-
-        nom = animal;
         m.addAttribute("Animal",serveiAnimal.consultaPerNom(animal));
-
         return "/updateAnimal";
     }
 
@@ -115,8 +105,15 @@ public class Controlador {
     public String updateAnimalpost(@ModelAttribute("Animal") Animal e){
         serveiAnimal.updateAnimal(e, nom);
         return "redirect:/";
-
     }
+
+    @RequestMapping( value ="/delete/{name}", method = RequestMethod.POST)
+    public String removeAnimal(@PathVariable("name") String animal){
+
+        serveiAnimal.removeAnimalbyName(animal);
+        return "redirect:/";
+    }
+
 
 
 

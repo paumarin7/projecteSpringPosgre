@@ -49,8 +49,6 @@ public class AnimalService {
     public void updateAnimal(Animal e, String nombre ){
           repositori.save(e);
 
-
-
     }
 
 
