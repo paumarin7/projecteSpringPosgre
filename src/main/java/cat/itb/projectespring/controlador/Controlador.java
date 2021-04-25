@@ -78,7 +78,8 @@ public class Controlador {
     //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
     //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
     public String updateAnimalpost(@ModelAttribute("Animal") Animal e){
-        serveiAnimal.updateAnimal(e);
+        nom = e.getNomAnimal();
+        serveiAnimal.updateAnimal(e, nom);
         return "redirect:/";
     }
 

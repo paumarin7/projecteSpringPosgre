@@ -46,8 +46,10 @@ public class AnimalService {
         repositori.delete(u);
     }
 
-    public void updateAnimal(Animal e){
-        Animal u = consultaPerNom(e.getNomAnimal());
+    public void updateAnimal(Animal e, String nombre ){
+        Animal u = consultaPerNom(nombre);
+        u.setNomAnimal(e.getNomAnimal());
+        u.setNomAnimal(e.getColorAnimal());
         repositori.save(u);
     }
 
