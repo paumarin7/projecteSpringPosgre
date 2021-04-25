@@ -72,7 +72,7 @@ public class Controlador {
     public String updateAnimal(@PathVariable("name") String animal, Model m){
         nom = animal;
         m.addAttribute("Animal",serveiAnimal.consultaPerNom(animal));
-        return "updateAnimal";
+        return "/updateAnimal";
     }
 
     @PostMapping("/updateAnimal")
