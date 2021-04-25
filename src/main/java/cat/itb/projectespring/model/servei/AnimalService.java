@@ -5,6 +5,7 @@ import cat.itb.projectespring.model.Usuari;
 import cat.itb.projectespring.model.repositoris.RepositoriAnimals;
 import cat.itb.projectespring.model.repositoris.RepositoriUsuaris;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class AnimalService {
     public List<Animal> llistat() {
         return (List<Animal>) repositori.findAll();
     }
+    public List<Animal> llistatPerNom() {
+        return (List<Animal>) repositori.findAll(Sort.by(Sort.Direction.ASC,"nomAnimal"));
+    }
+
+
 
     @PostConstruct
     public void init() {

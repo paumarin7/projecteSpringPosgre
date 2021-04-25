@@ -25,7 +25,7 @@ public class Controlador {
 
     @GetMapping("/")
     public  String  inici(Model m){
-        m.addAttribute("llistaAnimal",serveiAnimal.llistat());
+        m.addAttribute("llistaAnimal",serveiAnimal.llistatPerNom());
         m.addAttribute("Animal",new Animal());
         return "home";
     }
