@@ -50,8 +50,8 @@ public class AnimalService {
         Animal u = repositori.findById(nombre).orElse(null);
                 u.setColorAnimal(e.getColorAnimal());
                 u.setNomAnimal(e.getNomAnimal());
-            }
-        }
+
+
 
     }
 
