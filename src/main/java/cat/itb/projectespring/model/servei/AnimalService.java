@@ -42,15 +42,14 @@ public class AnimalService {
     }
 
     public void removeAnimalbyName(String s){
-        Animal animal = consultaPerNom(s);
-        repositori.delete(animal);
+        Animal u = consultaPerNom(s);
+        repositori.delete(u);
     }
 
     public void updateAnimal(Animal e, String nombre ){
-        Animal animal = consultaPerNom(nombre);
-                repositori.delete(animal);
-                repositori.save(e);
+        Animal u = consultaPerNom(nombre);
 
+        repositori.save(u);
     }
 
 
