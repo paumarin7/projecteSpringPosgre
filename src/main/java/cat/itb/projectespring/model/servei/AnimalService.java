@@ -47,7 +47,11 @@ public class AnimalService {
     }
 
     public void updateAnimal(Animal e, String nombre ){
-          repositori.save(e);
+        Animal u = repositori.findById(nombre).orElse(null);
+                u.setColorAnimal(e.getColorAnimal());
+                u.setNomAnimal(e.getNomAnimal());
+            }
+        }
 
     }
 
